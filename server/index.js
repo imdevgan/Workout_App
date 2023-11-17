@@ -12,13 +12,16 @@ require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Project_N";
 
+//Middleware that parses json files
 app.use(express.json());
+//Middleware that lets frontend operate with the backend
 app.use(cors());
 
 app.use("/api/v1/workouts", workout);
 app.use(notFound);
 app.use(errorHandlerMiddleware);
 
+//Connection to MongoDB
 mongoose
   .connect(MONGODB_URI)
   .then(() => {

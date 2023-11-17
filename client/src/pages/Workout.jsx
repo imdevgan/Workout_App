@@ -13,7 +13,7 @@ function Workout() {
       console.log(data.workout)
     };
     fetchData();
-  }, []);
+  }, [pathname]);
   return (
     <div className="workout">
       <h1>Monday</h1>

@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import About from "./components/About_Us";
 import Overview from "./pages/Overview";
 import Workout from "./pages/Workout";
+import Create from "./pages/Create";
 
 function App() {
   const [Login, setLogin] = useState(false);
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar Login={Login} setLogin={setLogin} />}>
             <Route index element={<Overview data={Data} />} />
+            <Route path="/create" element={<Create />} />
             <Route path="/:id" element={<Workout />} />
           </Route>
         </Routes>

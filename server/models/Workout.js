@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Schema for creating json files which will be stored in DB via post command
 const workoutSchema = new Schema({
   name: {
     type: String,
