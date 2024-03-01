@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
@@ -12,7 +12,9 @@ function App() {
   const [Data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/workouts`);
+      const result = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/workouts`
+      );
       const data = await result.json();
       setData(data.workout);
     };
@@ -22,7 +24,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar Login={Login} setLogin={setLogin} />}>
+          <Route
+            path="/"
+            element={<Navbar Login={Login} setLogin={setLogin} />}
+          >
             <Route index element={<Overview data={Data} />} />
             <Route path="/create" element={<Create />} />
             <Route path="/:id" element={<Workout />} />

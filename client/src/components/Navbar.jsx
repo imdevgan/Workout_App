@@ -3,24 +3,28 @@ import { Outlet, Link } from "react-router-dom";
 
 function Navbar({ Login, setLogin }) {
   return (
-    <div className="nav">
+    <>
       <div className="link-container">
-        <Link>Gym App</Link>
-        {Login === false ? (
-          <>
-            <Link>Login</Link>
-            <Link>Register</Link>
-          </>
-        ) : (
-          <>
-            <Link>Create</Link>
-            <Link>Logout</Link>
-          </>
-        )}
-        <button onClick={() => setLogin(!Login)}>Button</button>
+        <Link className="section-1" to="/">
+          Gym App
+        </Link>
+        <div className="section-2">
+          {Login === false ? (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/create">Create</Link>
+              <Link to="/logout">Logout</Link>
+            </>
+          )}
+          <button onClick={() => setLogin(!Login)}></button>
+        </div>
       </div>
-      <Outlet/>
-    </div>
+      <Outlet />
+    </>
   );
 }
 

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Inputs from "../components/Inputs";
+import "./Create.scss";
 
 function Create() {
   const [general, setGeneral] = useState({
     name: "",
+    username: "a",
     days: 1,
     description: "",
-    img:"",
+    img: "",
     monday: [],
     tuesday: [],
     wednesday: [],
@@ -21,36 +23,69 @@ function Create() {
       return { ...prev, [name]: value };
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/workouts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(general),
+    });
     console.log(general);
   };
   return (
-    <div>
-      <h1>Form</h1>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <label>Name: </label>
-        <input name="name" type="text" required onChange={handleChange} placeholder="Enter your name" />
-        <label>Days: </label>
-        <input name="days" type="number" required onChange={handleChange} min={1} max={7} />
-        <label>Description: </label>
-        <textarea name="description" required onChange={handleChange} cols="20" rows="5" placeholder="Enter the description for the workout"></textarea>
-        <label>Image: </label>
-        <input name="img" type="text" onChange={handleChange} placeholder="Enter your name" />
-        <img src={general.img} alt="" />
-        <label>Monday</label>
+        <h1>Form</h1>
+        <div>
+          <label>Name: </label>
+          <input
+            name="name"
+            type="text"
+            required
+            onChange={handleChange}
+            placeholder="Enter your name"
+          />
+        </div>
+        <div>
+          <label>Days: </label>
+          <input
+            name="days"
+            type="number"
+            required
+            onChange={handleChange}
+            min={1}
+            max={7}
+          />
+        </div>
+        <div>
+          <label className="description">Description: </label>
+          <textarea
+            name="description"
+            required
+            onChange={handleChange}
+            cols="100"
+            rows="5"
+            placeholder="Enter the description for the workout"
+          ></textarea>
+        </div>
+        <div>
+          <label>Image: </label>
+          <input
+            name="img"
+            type="text"
+            onChange={handleChange}
+            placeholder="Enter URL of the image"
+          />
+          <img src={general.img} alt="" />
+        </div>
         <Inputs day="monday" val={general} setVal={setGeneral} />
-        <label>Tuesday</label>
         <Inputs day="tuesday" val={general} setVal={setGeneral} />
-        <label>Wednesday</label>
         <Inputs day="wednesday" val={general} setVal={setGeneral} />
-        <label>Thursday</label>
         <Inputs day="thursday" val={general} setVal={setGeneral} />
-        <label>Friday</label>
         <Inputs day="friday" val={general} setVal={setGeneral} />
-        <label>Saturday</label>
         <Inputs day="saturday" val={general} setVal={setGeneral} />
-        <label>Sunday</label>
         <Inputs day="sunday" val={general} setVal={setGeneral} />
         <button type="submit">Submit</button>
       </form>

@@ -36,4 +36,5 @@ const workoutSchema = new Schema({
   sunday: Array,
 });
 
+//The first argument in the model function will determine the name of the collection in which the data will be stored   
 module.exports = mongoose.model("Workout", workoutSchema);

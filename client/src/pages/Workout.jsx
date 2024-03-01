@@ -5,15 +5,22 @@ const static_data=require('../data/Data')
 function Workout() {
   const pathname = window.location.pathname
   const [data, setData] = useState(static_data);
+  const [invalid,setInvalid]=useState(false)
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/workouts/${pathname}`);
+      const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/workouts${pathname}`);
       const data = await result.json();
-      setData(data.workout);
-      console.log(data.workout)
+      if(data.msg===undefined){
+        setData(data.workout);
+      }
+      else setInvalid(true)
+      console.log(data)
     };
     fetchData();
   }, [pathname]);
+  if(invalid===true){
+    return <h1>This link doesn't exist</h1>
+  }
   return (
     <div className="workout">
       <h1>Monday</h1>

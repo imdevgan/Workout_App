@@ -1,4 +1,4 @@
-import { useState } from "react";
+import "./Inputs.scss";
 
 function Inputs({ day, val, setVal }) {
   const handleAdd = () => {
@@ -21,25 +21,52 @@ function Inputs({ day, val, setVal }) {
       return { ...prev, [day]: deleteVal };
     });
   };
+  const firstUpperCase = (day) => {
+    return day[0].toUpperCase() + day.slice(1);
+  };
   return (
-    <>
+    <span className="inputs">
+      <div className="input-container">
+        <label>{firstUpperCase(day)}</label>
+        <button type="button" className="button" onClick={() => handleAdd()}>
+          Add
+        </button>
+      </div>
       {val[day].map((data, i) => {
         return (
           <div>
-            <label>Exercise {i + 1}</label>
-            <input type="text" required onChange={(e) => handleChange(e, i, 0)} />
+            <label>Exercise {i + 1} :</label>
+            <input
+              type="text"
+              required
+              onChange={(e) => handleChange(e, i, 0)}
+            />
             <label>Sets: </label>
-            <input type="number" onChange={(e) => handleChange(e, i, 1)} min={1} max={20} />
+            <input
+              type="number"
+              onChange={(e) => handleChange(e, i, 1)}
+              min={1}
+              max={20}
+            />
             <label>Reps: </label>
-            <input type="number" onChange={(e) => handleChange(e, i, 2)} min={1} max={100} />
+            <input
+              type="number"
+              onChange={(e) => handleChange(e, i, 2)}
+              min={1}
+              max={100}
+            />
             <label>Rest: </label>
-            <input type="number" onChange={(e) => handleChange(e, i, 3)} min={0} max={300} />
+            <input
+              type="number"
+              onChange={(e) => handleChange(e, i, 3)}
+              min={0}
+              max={300}
+            />
             <button onClick={() => handleDelete(i)}>x</button>
           </div>
         );
       })}
-      <button type="button" onClick={() => handleAdd()}>Add</button>
-    </>
+    </span>
   );
 }
 
