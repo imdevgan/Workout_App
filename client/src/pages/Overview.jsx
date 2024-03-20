@@ -4,17 +4,21 @@ import { Link } from "react-router-dom";
 function Overview({ data }) {
   console.log(data);
   return (
-    <div>
+    <div className="overview">
       {data.map((i) => {
         return (
-          <>
-            <img src={i.img} alt="" />
-            <Link className="heading" to={`/${i._id}`}>
-              Name: {i.name}
-            </Link>
-            <h3>Days: {i.days}</h3>
-            <h2>{i.description}</h2>
-          </>
+          <div className="overview-workout">
+            <div>
+              <img src={i.img} alt="" />
+            </div>
+            <div className="overview-body">
+              <Link className="heading" to={`/${i._id}`}>
+                {i.name}
+              </Link>
+              <h3>Days: {i.days}</h3>
+              <h3>{i.description}</h3>
+            </div>
+          </div>
         );
       })}
     </div>

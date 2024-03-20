@@ -4,13 +4,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: black;
-  font-family: ProximaNova, Arial, sans-serif;
-  font-weight: 400;
   position: sticky;
   top: 0;
   height: 4.375rem;
   padding: 0 1.25rem 0 1.25rem;
   .section-1 {
+    margin-left: 20px;
   }
   .section-2 {
     display: flex;
@@ -19,15 +18,29 @@
     justify-content: space-evenly;
   }
   a:visited,
-  a:link {
+  a {
     font-size: 1.56rem;
     color: white;
     text-decoration: none;
+    display: inline-block;
+    text-decoration: underline;
+    text-decoration-color: transparent;
   }
   a:hover {
-    text-decoration: underline;
-  }
-  a:active {
+    transition: 1s;
+    text-decoration-color: red;
     color: red;
+  }
+  a::after {
+    content: "";
+    margin-top: 0px;
+    width: 0px;
+    height: 2px;
+    display: block;
+    transition: all ease-in-out 0.5s;
+    background-color: red;
+  }
+  a:hover::after {
+    width: 100%;
   }
 }

@@ -1,8 +1,25 @@
-img{
-    max-width: 100px;
-    max-height: 100px;
-}
-.heading{
+.overview {
+  width: 70%;
+  margin: auto;
+  a {
+    color: black;
+    transition: all ease-in 0.75s;
+  }
+  a:hover {
+    color: rgb(225, 0, 0);
+  }
+  .overview-workout {
+    display: flex;
+    margin: 50px auto;
+  }
+  img {
+    max-width: 200px;
+  }
+  .overview-body {
+    margin-left: 10px;
+  }
+  .heading {
     font-size: 2rem;
     text-decoration: none;
+  }
 }

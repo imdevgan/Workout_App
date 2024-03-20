@@ -18,7 +18,9 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/v1/workouts", workout);
+//Middleware that handles if a link is not availible
 app.use(notFound);
+//Middleware that handles errors
 app.use(errorHandlerMiddleware);
 
 //Connection to MongoDB

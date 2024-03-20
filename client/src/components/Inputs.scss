@@ -1,11 +1,11 @@
 .inputs {
   .input-container {
     display: grid;
-    grid-template-columns: 1fr 10fr;
+    grid-template-columns: 1fr 4fr;
     margin: 5px;
   }
   button {
     margin-left: 10px;
-    width: 5%;
+    max-width: 10%;
   }
 }

@@ -65,7 +65,7 @@ function Create() {
             name="description"
             required
             onChange={handleChange}
-            cols="100"
+            cols="50"
             rows="5"
             placeholder="Enter the description for the workout"
           ></textarea>
