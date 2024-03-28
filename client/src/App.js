@@ -6,6 +6,8 @@ import About from "./components/About_Us";
 import Overview from "./pages/Overview";
 import Workout from "./pages/Workout";
 import Create from "./pages/Create";
+import Register from "./pages/Register";
+import "./App.scss";
 
 function App() {
   const [Login, setLogin] = useState(false);
@@ -29,6 +31,7 @@ function App() {
             element={<Navbar Login={Login} setLogin={setLogin} />}
           >
             <Route index element={<Overview data={Data} />} />
+            <Route path="/login" element={<Register />} />
             <Route path="/create" element={<Create />} />
             <Route path="/:id" element={<Workout />} />
           </Route>
