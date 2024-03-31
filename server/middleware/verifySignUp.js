@@ -5,14 +5,12 @@ const checkDuplicate = asyncWrapper(async (req, res, next) => {
   //Username
   const user = await User.findOne({ username: req.body.username });
   if (user) {
-    res.status(400).send({ message: "Username already exists!" });
-    return;
+    return res.status(400).json({ message: "Username already exists!" });
   } else {
   }
   const user1 = await User.findOne({ email: req.body.email });
   if (user1) {
-    res.status(400).send({ message: "Email already exists" });
-    return;
+    return res.status(400).json({ message: "Email already exists" });
   }
   next();
 });

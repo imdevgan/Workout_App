@@ -17,26 +17,41 @@ function Register() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginInfo),
-    });
+    let data;
+    if (register) {
+      data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo),
+      });
+      console.log(data);
+    } else {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo),
+      });
+    }
     console.log(loginInfo);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Username: </label>
+    <div className="register">
+      <div>
+        <button onClick={() => setRegister(false)}>Login</button>
+        <button onClick={() => setRegister(true)}>Register</button>
+      </div>
+      <form onSubmit={handleSubmit} className="register">
+        <label>Username: </label>
         <input name="username" type="text" onChange={handleChange}></input>
         <label>E-Mail: </label>
         <input name="email" type="email" onChange={handleChange} />
-        <label htmlFor="">Password: </label>
+        <label>Password: </label>
         <input name="password" type="password" onChange={handleChange} />
-        <button type="submit">Login</button>
-        <button type="submit">Register</button>
+        <button type="submit">{register ? <>Register</> : <>Login</>}</button>
       </form>
     </div>
   );
