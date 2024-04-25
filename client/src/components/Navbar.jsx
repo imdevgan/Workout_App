@@ -11,7 +11,6 @@ function Navbar({ Login, setLogin }) {
         <div className="section-2">
           {Login === false ? (
             <>
-              <Link to="/login">Login</Link>
               <Link to="/register">Register</Link>
             </>
           ) : (

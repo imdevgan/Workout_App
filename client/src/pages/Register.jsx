@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Register.scss";
 
-function Register() {
+function Register({ Login, setLogin }) {
   const [loginInfo, setLoginInfo] = useState({
     username: "",
     email: "",
@@ -17,40 +17,50 @@ function Register() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let data;
     if (register) {
-      data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
+      const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(loginInfo),
       });
-      console.log(data);
+      const response = await data.json();
+      console.log(response);
     } else {
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/signin`, {
+      const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(loginInfo),
       });
+      const response = await data.json();
+      console.log(response);
     }
-    console.log(loginInfo);
   };
   return (
     <div className="register">
-      <div>
-        <button onClick={() => setRegister(false)}>Login</button>
-        <button onClick={() => setRegister(true)}>Register</button>
-      </div>
-      <form onSubmit={handleSubmit} className="register">
-        <label>Username: </label>
-        <input name="username" type="text" onChange={handleChange}></input>
-        <label>E-Mail: </label>
-        <input name="email" type="email" onChange={handleChange} />
-        <label>Password: </label>
-        <input name="password" type="password" onChange={handleChange} />
+      <form onSubmit={handleSubmit} className="register-form">
+        <div>
+          <button type="button" onClick={() => setRegister(false)}>
+            Login
+          </button>
+          <button type="button" onClick={() => setRegister(true)}>
+            Register
+          </button>
+        </div>
+        <label>Username</label>
+        <input name="username" type="text" onChange={handleChange} required />
+        <label>E-Mail</label>
+        <input name="email" type="email" onChange={handleChange} required />
+        <label>Password</label>
+        <input
+          name="password"
+          type="password"
+          onChange={handleChange}
+          required
+        />
         <button type="submit">{register ? <>Register</> : <>Login</>}</button>
       </form>
     </div>
